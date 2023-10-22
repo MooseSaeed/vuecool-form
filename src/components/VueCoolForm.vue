@@ -16,13 +16,12 @@
     />
     <h2
       class="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased text-center"
+      :class="{
+        'text-white': showDefaultFormInfo,
+        'text-green-500': !showDefaultFormInfo
+      }"
     >
-      {{
-        !formInfo.title || !formInfo.name
-          ? `${defaultName} - ${defaultTitle}`
-          : `${formInfo.name}
-      - ${formInfo.title}`
-      }}
+      {{ formHeader }}
     </h2>
 
     <form class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
@@ -77,7 +76,8 @@
         >
           <input
             type="checkbox"
-            class="peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-green-500 checked:bg-green-500 checked:before:bg-green-500"
+            class="peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:before:bg-green-500"
+            :class="consent ? 'border-green-500 bg-green-500' : ''"
             id="checkbox"
             :checked="consent"
             @change="checkBoxHandler"
@@ -109,7 +109,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 const defaultName = 'VueCool Form'
 const defaultTitle = 'Tell Us About Yourself'
@@ -117,6 +117,18 @@ const defaultTitle = 'Tell Us About Yourself'
 const formInfo = reactive({
   name: '',
   title: ''
+})
+
+// Returns a boolean to whether both name and title are empty
+const showDefaultFormInfo = computed(() => {
+  return !formInfo.name.length || !formInfo.title.length
+})
+
+// Returns a string based on the result of showDefaultFormInfo
+const formHeader = computed(() => {
+  return showDefaultFormInfo.value
+    ? `${defaultName} - ${defaultTitle}`
+    : `${formInfo.name} - ${formInfo.title}`
 })
 
 const name = ref('')
