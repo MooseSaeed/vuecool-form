@@ -1,6 +1,6 @@
 # vuecool-form
 
-This template should help get you started developing with Vue 3 in Vite.
+A sample project for a Vue 3 Composition API workshop.
 
 ## Recommended IDE Setup
 
