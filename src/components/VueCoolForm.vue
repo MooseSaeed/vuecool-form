@@ -17,7 +17,12 @@
     <h2
       class="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased text-center"
     >
-      {{ formHeader }}
+      {{
+        !formInfo.title || !formInfo.name
+          ? `${defaultName} - ${defaultTitle}`
+          : `${formInfo.name}
+      - ${formInfo.title}`
+      }}
     </h2>
 
     <form class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
@@ -74,37 +79,25 @@
 </template>
 
 <script>
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive } from 'vue'
 export default {
   setup() {
-    // const formName = ref('')
-    // const formTitle = ref('')
-
     const defaultName = 'VueCool Form'
     const defaultTitle = 'Tell Us About Yourself'
 
+    // const formName = ref('')
+    // const formTitle = ref('')
     const formInfo = reactive({
       name: '',
       title: ''
-    })
-
-    // Returns a boolean to whether both name and title are empty
-    const showDefaultFormInfo = computed(() => {
-      return !formInfo.name.length || !formInfo.title.length
-    })
-
-    // Returns a string based on the result of showDefaultFormInfo
-    const formHeader = computed(() => {
-      return showDefaultFormInfo.value
-        ? `${defaultName} - ${defaultTitle}`
-        : `${formInfo.name} - ${formInfo.title}`
     })
 
     const name = ref('')
 
     return {
       formInfo,
-      formHeader,
+      defaultName,
+      defaultTitle,
       name
     }
   }
