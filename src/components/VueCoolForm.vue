@@ -109,7 +109,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, watch, watchEffect } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 const defaultName = 'VueCool Form'
 const defaultTitle = 'Tell Us About Yourself'
@@ -138,32 +138,6 @@ const consent = ref(false)
 const checkBoxHandler = () => {
   consent.value = !consent.value
 }
-
-// Must set immediate to true to trigger the watcher with the initial page load
-// watch(
-//   name,
-//   (newName) => {
-//     if (newName.length === 0) {
-//       alert('Name field is empty')
-//     }
-//   },
-//   { immediate: false }
-// )
-
-// Will be triggered immediately by default
-// watchEffect(() => {
-//   if (name.value.length === 0) {
-//     alert('Name field is empty')
-//   }
-// })
-
-const newJoke = ref('')
-
-watch(consent, async () => {
-  const response = await fetch(`https://api.chucknorris.io/jokes/random`).then((res) => res.json())
-
-  newJoke.value = response.value
-})
 </script>
 
 <style></style>
