@@ -26,7 +26,6 @@
         <label
           class="relative -ml-2.5 flex cursor-pointer items-center rounded-full p-3"
           for="checkbox"
-          data-ripple-dark="true"
         >
           <input
             type="checkbox"
@@ -52,7 +51,6 @@
       <button
         class="mt-6 flex justify-center items-center w-full select-none rounded-lg bg-green-600 hover:bg-green-500 py-3 px-6 text-center align-middle font-sans text-md font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
         type="button"
-        data-ripple-light="true"
       >
         Confirm
       </button>
