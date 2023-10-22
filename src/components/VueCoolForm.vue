@@ -59,7 +59,17 @@
 </template>
 
 <script>
-export default {}
+export default {
+  setup() {
+    // Can use Composition API here
+    return {}
+  },
+  // Can use Options API here
+  data() {
+    return {}
+  },
+  methods: {}
+}
 </script>
 
 <style></style>
