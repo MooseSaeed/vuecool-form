@@ -1,35 +1,28 @@
 # vuecool-form
 
-A sample project for a Vue 3 Composition API workshop.
+## Reactive Form with Dynamic Fields
 
-## Recommended IDE Setup
+### Initialize Reactive Variables:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Inside the setup option, you'll need to create reactive variables to hold the form data for each input. Additionally, create another variable to manage validation for all the inputs. Here's an example of how to start:
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```javascript
+const name = ... // For the "Name" input
+const formValidation = ... // For fields validation
 ```
 
-### Compile and Hot-Reload for Development
+### Check Your Logic with Vue DevTools:
 
-```sh
-npm run dev
-```
+Before proceeding further, it's a good practice to use Vue DevTools to ensure that your logic is functioning as expected.
 
-### Compile and Minify for Production
+### Transition to script setup:
 
-```sh
-npm run build
-```
+Next, you should move your code from the script option to the script setup.
 
-### Lint with [ESLint](https://eslint.org/)
+### Double-Check Your Logic:
 
-```sh
-npm run lint
-```
+Once you've moved your code to script setup, make sure to use Vue DevTools again to ensure that your logic still works as intended.
+
+### Manage Checkbox State:
+
+Within the script setup, implement the logic to handle and maintain the state of the checkbox input.
