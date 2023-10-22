@@ -2,16 +2,29 @@
   <div
     class="relative flex flex-col items-center rounded-xl bg-transparent bg-clip-border text-gray-300 shadow-none;"
   >
+    <input
+      class="mb-3 w-full rounded-md border bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all"
+      type="text"
+      placeholder="Give me a name"
+      v-model="formInfo.name"
+    />
+    <input
+      class="mb-3 w-full rounded-md border bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all"
+      type="text"
+      placeholder="Give me a title"
+      v-model="formInfo.title"
+    />
     <h2
       class="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased text-center"
     >
-      VueCool Form - Tell Us About Yourself
+      {{ formHeader }}
     </h2>
 
     <form class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
       <div class="mb-4 flex flex-col gap-6">
         <div class="relative h-11 w-full min-w-[200px]">
           <input
+            v-model="name"
             class="peer h-full w-full rounded-md border bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-green-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
             placeHolder=" "
           />
@@ -31,6 +44,8 @@
             type="checkbox"
             class="peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-green-500 checked:bg-green-500 checked:before:bg-green-500"
             id="checkbox"
+            :checked="consent"
+            @change="checkBoxHandler"
           />
         </label>
         <label class="mt-px cursor-pointer select-none font-light text-gray-700" for="checkbox">
@@ -59,16 +74,40 @@
 </template>
 
 <script>
+import { ref, reactive, computed } from 'vue'
 export default {
   setup() {
-    // Can use Composition API here
-    return {}
-  },
-  // Can use Options API here
-  data() {
-    return {}
-  },
-  methods: {}
+    // const formName = ref('')
+    // const formTitle = ref('')
+
+    const defaultName = 'VueCool Form'
+    const defaultTitle = 'Tell Us About Yourself'
+
+    const formInfo = reactive({
+      name: '',
+      title: ''
+    })
+
+    // Returns a boolean to whether both name and title are empty
+    const showDefaultFormInfo = computed(() => {
+      return !formInfo.name.length || !formInfo.title.length
+    })
+
+    // Returns a string based on the result of showDefaultFormInfo
+    const formHeader = computed(() => {
+      return showDefaultFormInfo.value
+        ? `${defaultName} - ${defaultTitle}`
+        : `${formInfo.name} - ${formInfo.title}`
+    })
+
+    const name = ref('')
+
+    return {
+      formInfo,
+      formHeader,
+      name
+    }
+  }
 }
 </script>
 
