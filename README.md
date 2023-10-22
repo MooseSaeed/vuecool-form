@@ -4,7 +4,7 @@
 
 ### Initialize Reactive Variables:
 
-Inside the setup option, you'll need to create reactive variables to hold the form data for each input. Additionally, create another variable to manage validation for all the inputs. Here's an example of how to start:
+Inside the setup option, you'll need to create reactive variables to hold the form data for each input. Here's an example of how to start:
 
 ```javascript
 const name = ... // For the "Name" input
