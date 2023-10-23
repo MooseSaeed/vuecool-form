@@ -26,7 +26,7 @@
 
     <form class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
       <TransitionGroup name="list" tag="ul" mode="out-in">
-        <li class="mb-4 flex flex-col gap-6">
+        <li class="mb-4 flex flex-col gap-6" :key="1">
           <div class="relative h-11 w-full min-w-[200px]">
             <input
               v-model="name"
@@ -40,7 +40,7 @@
             </label>
           </div>
         </li>
-        <li class="mb-4 flex flex-col gap-6">
+        <li class="mb-4 flex flex-col gap-6" :key="2">
           <div class="relative h-11 w-full min-w-[200px]">
             <input
               class="peer h-full w-full rounded-md border bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-green-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -55,7 +55,7 @@
             </label>
           </div>
         </li>
-        <li class="mb-4 flex flex-col gap-6">
+        <li class="mb-4 flex flex-col gap-6" :key="3">
           <div class="relative h-11 w-full min-w-[200px]">
             <input
               class="peer h-full w-full rounded-md border bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-green-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -70,7 +70,7 @@
             </label>
           </div>
         </li>
-        <li class="inline-flex items-center">
+        <li class="inline-flex items-center" :key="4">
           <label
             class="relative -ml-2.5 flex cursor-pointer items-center rounded-full p-3"
             for="checkbox"
@@ -99,7 +99,7 @@
             </p>
           </label>
         </li>
-        <li>
+        <li :key="5">
           <button
             class="mt-6 flex justify-center items-center w-full select-none rounded-lg bg-green-600 hover:bg-green-500 py-3 px-6 text-center align-middle font-sans text-md font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"
