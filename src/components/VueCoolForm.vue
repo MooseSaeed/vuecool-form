@@ -29,7 +29,7 @@
         <li class="mb-4 flex flex-col gap-6" :key="1">
           <div class="relative h-11 w-full min-w-[200px]">
             <input
-              v-model="name"
+              v-model="formData.name"
               class="peer h-full w-full rounded-md border bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-green-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               placeHolder=" "
             />
@@ -40,13 +40,18 @@
             </label>
           </div>
         </li>
+        <li v-for="(err, index) in formValidation.name" :key="index" class="error">
+          <p>
+            {{ err }}
+          </p>
+        </li>
         <li class="mb-4 flex flex-col gap-6" :key="2">
           <div class="relative h-11 w-full min-w-[200px]">
             <input
               class="peer h-full w-full rounded-md border bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-green-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               placeHolder=" "
               type="email"
-              v-model="email"
+              v-model="formData.email"
             />
             <label
               class="pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before: before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after: after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-green-300 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-green-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-green-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
@@ -55,13 +60,18 @@
             </label>
           </div>
         </li>
+        <li v-for="(err, index) in formValidation.email" :key="index" class="error">
+          <p>
+            {{ err }}
+          </p>
+        </li>
         <li class="mb-4 flex flex-col gap-6" :key="3">
           <div class="relative h-11 w-full min-w-[200px]">
             <input
               class="peer h-full w-full rounded-md border bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-green-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               placeHolder=" "
               type="email"
-              v-model="confirmEmail"
+              v-model="formData.confirmEmail"
             />
             <label
               class="pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before: before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after: after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-green-300 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-green-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-green-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
@@ -69,6 +79,11 @@
               Confirm Email
             </label>
           </div>
+        </li>
+        <li v-for="(err, index) in formValidation.confirmEmail" :key="index" class="error">
+          <p>
+            {{ err }}
+          </p>
         </li>
         <li class="inline-flex items-center" :key="4">
           <label
@@ -78,9 +93,9 @@
             <input
               type="checkbox"
               class="peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:before:bg-green-500"
-              :class="consent ? 'border-green-500 bg-green-500' : ''"
+              :class="formData.consent ? 'border-green-500' : ''"
               id="checkbox"
-              :checked="consent"
+              :checked="formData.consent"
               @change="checkBoxHandler"
             />
           </label>
@@ -103,6 +118,8 @@
           <button
             class="mt-6 flex justify-center items-center w-full select-none rounded-lg bg-green-600 hover:bg-green-500 py-3 px-6 text-center align-middle font-sans text-md font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"
+            :disabled="!formData.consent"
+            :class="{ 'bg-gray-500': !formData.consent }"
           >
             Confirm
           </button>
@@ -113,7 +130,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { watchEffect, reactive, computed } from 'vue'
 
 const defaultName = 'VueCool Form'
 const defaultTitle = 'Tell Us About Yourself'
@@ -133,14 +150,52 @@ const formHeader = computed(() => {
     : `${formInfo.name} - ${formInfo.title}`
 })
 
-const name = ref('')
-const email = ref('')
-const confirmEmail = ref('')
-const consent = ref(false)
-
 const checkBoxHandler = () => {
-  consent.value = !consent.value
+  formData.consent = !formData.consent
 }
+
+const formData = reactive({
+  name: '',
+  email: '',
+  confirmEmail: '',
+  consent: false
+})
+
+const formValidation = reactive({
+  name: [],
+  email: [],
+  confirmEmail: []
+})
+
+const validateName = () => {
+  formValidation.name = []
+  if (formData.name && formData.name.length <= 3) {
+    formValidation.name.push('Name must be at least 3 characters.')
+  }
+  if (formData.name && formData.name.includes('@')) {
+    formValidation.name.push('Name is invalid')
+  }
+}
+
+const validateEmail = () => {
+  formValidation.email = []
+  if (formData.email && !formData.email.includes('@')) {
+    formValidation.email.push('Email is invalid')
+  }
+}
+
+const validateConfirmEmail = () => {
+  formValidation.confirmEmail = []
+  if (formData.confirmEmail && formData.email !== formData.confirmEmail) {
+    formValidation.confirmEmail.push('Emails do not match')
+  }
+}
+
+watchEffect(() => {
+  validateName()
+  validateEmail()
+  validateConfirmEmail()
+})
 </script>
 
 <style scoped>

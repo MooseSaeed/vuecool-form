@@ -6,6 +6,6 @@ body {
   @apply flex items-center justify-center min-h-screen bg-gray-900;
 }
 
-p.error {
+.error {
   @apply px-2 py-1 mb-4 text-sm font-bold bg-red-500 rounded-md;
 }
